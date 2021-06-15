@@ -1,8 +1,11 @@
-#' The program will take your data as input and return three numbers as output: estimate of s, estimate of α, and value of the statistic L.
+#' The program will take your data as input and return three numbers as output: estimate of s, estimate of alpha, and value of the statistic L.
 #'
 #' @param x Import Raw data
 #' @param tolerance Tolerance quantity
-#' @return Output estimate of s, estimate of α, and value of the statistic L.
+#' @return Output estimate of s, estimate of alpha, and value of the statistic L.
+#' @examples
+#' x<-rexp(1000,0.1)
+#' sigmaalphaLREP(x,10^-12)
 #' @export
 sigmaalphaLREP<-function(x,tolerance)
 {

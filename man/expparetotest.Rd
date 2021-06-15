@@ -17,3 +17,7 @@ Output the critical number for the test, the value of the -2L (deviance) statist
 \description{
 This program takes your data and the significance level as input and returns the critical number for the test, the value of the -2L (deviance) statistic and the decision (Pareto or exponential) as output.
 }
+\examples{
+x<-rexp(1000,0.1)
+expparetotest(x,0.05)
+}

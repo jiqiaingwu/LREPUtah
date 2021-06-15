@@ -3,6 +3,9 @@
 #' @param x Import Raw data
 #' @param alpha Significance level. Note: this program works only for the following significance levels: 0.10, 0.075, 0.05, 0.025, 0.01 and 0.005.
 #' @return Output the critical number for the test, the value of the -2L (deviance) statistic and the decision (Pareto or exponential) .
+#' @examples
+#' x<-rexp(1000,0.1)
+#' expparetotest(x,0.05)
 #' @export
 expparetotest<-function(x,alpha)
 {

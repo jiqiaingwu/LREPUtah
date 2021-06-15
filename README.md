@@ -5,6 +5,9 @@
 
 <!-- badges: start -->
 
+[![Travis build
+status](https://travis-ci.com/jiqiaingwu/LREPUtah.svg?branch=main)](https://travis-ci.com/jiqiaingwu/LREPUtah)
+[![R-CMD-check](https://github.com/jiqiaingwu/LREPUtah/workflows/R-CMD-check/badge.svg)](https://github.com/jiqiaingwu/LREPUtah/actions)
 <!-- badges: end -->
 
 The goal of LREPUtah is to estimate the Parameters for the Pareto
@@ -39,43 +42,45 @@ of the observed sample under the Pareto or exponential (in the
 numerator) and exponential (in the denominator) models. The logarithm
 (natural) of the likelihood ratio, the L statistic, is:
 
-![Image of
-Formula1](http://www.sciweavers.org/upload/Tex2Img_1621887448/render.png)
+![main
+equation](https://latex.codecogs.com/svg.image?L=log%5Cfrac%7Bmax\(%5Cunderset%7B%5Calpha%20%3E0,s%3E0%7D%7Bsup%7DL_%7BPareto%7D\(%5Cvec%7Bx%7D%7C%5Calpha,s\),%5Cunderset%7B%5Csigma%20%3E0%7D%7Bsup%7DL_%7Bexp%7D\(%5Cvec%7Bx%7D%20%7C%20%5Csigma%20\)\)%7D%7B%5Cunderset%7B%5Csigma%20%3E0%7D%7Bsup%7DL_%7Bexp%7D\(%5Cvec%7Bx%7D%7C%5Csigma%20\)%7D)
 
-Where
-<img src="http://www.sciweavers.org/tex2img.php?eq=%5Cvec%7Bx%7D&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0" align="center" border="0" alt="\vec{x}" width="15" height="15" />
-is the observed sample of excesses and
-<img src="http://www.sciweavers.org/tex2img.php?eq=L_%7BPareto%7D%28%5Cvec%7Bx%7D%7C%5Calpha%2Cs%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0" align="center" border="0" alt="L_{Pareto}(\vec{x}|\alpha,s)" width="117" height="18" />
-and
-<img src="http://www.sciweavers.org/tex2img.php?eq=L_%7Bexp%7D%28%5Cvec%7Bx%7D%7C%5Csigma%29&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0" align="center" border="0" alt="L_{exp}(\vec{x}|\sigma)" width="79" height="21" />
+Where ![Image of Equation
+1](https://latex.codecogs.com/svg.image?%5Cvec%7Bx%7D) is the observed
+sample of excesses and ![Image of Equation
+2](https://latex.codecogs.com/svg.image?L_%7BPareto%7D\(%5Cvec%7Bx%7D%7C%5Calpha%20,s\))
+and ![Image of Equation
+3](https://latex.codecogs.com/svg.image?L_%7Bexp%7D\(%5Cvec%7Bx%7D%7C%5Csigma%20\))
 are the likelihood functions of the sample under Pareto and exponential
 models, respectively.
 
 We use a Pareto distribution with the survival function ![Image of
-Formula2](http://www.sciweavers.org/download/Tex2Img_1621889918.jpg) and
-exponential distribution with the survival function ![Image of
-Formula1](http://www.sciweavers.org/download/Tex2Img_1621890083.jpg). To
-compute L, both likelihoods are maximized first (via maximum likelihood
-estimates, MLEs, of the parameters), and then the natural logarithm of
-their ratio is taken as the likelihood ratio statistic. Panorska et
-al. (2007) provide the necessary theoretical results for the
+Formula
+1](https://latex.codecogs.com/svg.image?S\(x\)=P\(X%3Ex\)=\(%5Cfrac%7B1%7D%7B1+%5Cfrac%7Bx%7D%7Bs%5Calpha%7D%7D\)%5E%7Ba%7D)
+and exponential distribution with the survival function ![Image of
+Formula
+2](https://latex.codecogs.com/svg.image?S\(x\)=P\(X%3Ex\)=exp\(-%20%5Cfrac%7Bx%7D%7B%5Csigma%20%7D\)).
+To compute L, both likelihoods are maximized first (via maximum
+likelihood estimates, MLEs, of the parameters), and then the natural
+logarithm of their ratio is taken as the likelihood ratio statistic.
+Panorska et al. (2007) provide the necessary theoretical results for the
 implementation of the numerical routines necessary for the computation
 of L. The properties of the test, proofs and more details on the
 optimization process appear separately in Kozubowski et al.(2007)
 
-The (1-γ)100 percentiles of L provide the critical numbers for our test
-on the significance level γ. The test is one-sided and we reject the
-null hypothesis if the computed value of the test statistic exceeds the
-critical number. We have computed some common percentiles for the
-distribution of L under the null hypothesis for different sample sizes
-and for the limiting case. The percentiles for finite sample sizes were
-computed via Monte Carlo simulation with 10,000 samples of a given size
-from the exponential distribution (Table 1).
+The ![Image of Equation
+4](https://latex.codecogs.com/svg.image?\(1%20-%20%5Cgamma\)100)
+percentiles of L provide the critical numbers for our test on the
+significance level ![Image of Equation
+5](https://latex.codecogs.com/svg.image?%5Cgamma%20). The test is
+one-sided and we reject the null hypothesis if the computed value of the
+test statistic exceeds the critical number. We have computed some common
+percentiles for the distribution of L under the null hypothesis for
+different sample sizes and for the limiting case. The percentiles for
+finite sample sizes were computed via Monte Carlo simulation with 10,000
+samples of a given size from the exponential distribution (Table below).
 
-![Table 1](C:\\Users\\u0764193\\Downloads\\Plot.PNG)
-
-Note: If the table didn’t show up, please check the following link:
-‘<https://drive.google.com/file/d/1TtT-9XYxvT0XoqqnmVSOJYTUnXWvSOUG/view?usp=sharing>’
+![Table 1](man/figures/Table1.PNG)
 
 ## Example
 
@@ -89,11 +94,13 @@ library(LREPUtah)
 
 x<-rexp(1000,0.000000000005)
 1/mean(x)
-#> [1] 5.115638e-12
-sigma.alpha.LREP(x,10^-12)
+#> [1] 5.104367e-12
+sigmaalphaLREP(x,10^-12)
 #>         s.hat     a.hat log.like.ratio
-#> [1,] 11274369 0.1085534              0
-exp.pareto.test(x,0.05)
+#> [1,] 21789436 0.1170949              0
+expparetotest(x,0.05)
+#>         s.hat     a.hat log.like.ratio
+#> [1,] 21789436 0.1170949              0
 #> Critical value: 2.446109 
 #> Deviance statistic: 0 
 #> Data is comming from an exponential distribution
@@ -105,13 +112,15 @@ exp.pareto.test(x,0.05)
 
 x<-rexp(1000,0.1)
 1/mean(x)
-#> [1] 0.09840417
-sigma.alpha.LREP(x,10^-12)
+#> [1] 0.1029218
+sigmaalphaLREP(x,10^-12)
 #>         s.hat    a.hat log.like.ratio
-#> [1,] 13482.38 1327.721              0
-exp.pareto.test(x,0.05)
+#> [1,] 228.9593 24.56182       1.442054
+expparetotest(x,0.05)
+#>         s.hat    a.hat log.like.ratio
+#> [1,] 228.9593 24.56182       1.442054
 #> Critical value: 2.446109 
-#> Deviance statistic: 0 
+#> Deviance statistic: 1.442054 
 #> Data is comming from an exponential distribution
 
 ##asymptotic p-value
@@ -130,12 +139,14 @@ pareto.generation<- function(s,a,n)
 
 
 x<-pareto.generation(10,7,1000)
-sigma.alpha.LREP(x,10^-12)
+sigmaalphaLREP(x,10^-12)
 #>         s.hat    a.hat log.like.ratio
-#> [1,] 11.40338 7.732646       15.42963
-exp.pareto.test(x,0.05)
+#> [1,] 12.60013 8.658641       11.63293
+expparetotest(x,0.05)
+#>         s.hat    a.hat log.like.ratio
+#> [1,] 12.60013 8.658641       11.63293
 #> Critical value: 2.446109 
-#> Deviance statistic: 15.42963 
+#> Deviance statistic: 11.63293 
 #> Data is comming from Pareto distribution
 
 ##asymptotic p-value
